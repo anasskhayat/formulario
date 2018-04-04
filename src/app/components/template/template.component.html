@@ -1,0 +1,73 @@
+<h4>Formularios
+  <small>template</small>
+</h4>
+<hr>
+<form (ngSubmit)="guardar(forme)" #forme="ngForm" novalidate="">
+
+  <div>
+
+    <div class="form-group row" >
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+
+        <input class="form-control is-invalid" type="text"
+         placeholder="Nombre" name="nombre"
+          [(ngModel)]="usuario.nombre" minlength="5" required
+          #nombre="ngModel">
+
+        <div *ngIf="nombre.errors?.required"
+        class="invalid-feedback">
+          el nombre requiredo
+        </div>
+        <div *ngIf="nombre.errors?.minlength">
+          el nombre requiredo minimo {{nombre.errors?.minlength.requiredLength}} caracters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+
+        <input class="form-control" type="text"
+         placeholder="Apellido" name="apellido"
+          [(ngModel)]="usuario.apellido" required
+          #Apellido="ngModel">
+
+   
+      <div *ngIf="Apellido.errors?.required">
+        el Apellido requiredo
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+
+      <input class="form-control" type="email"
+       placeholder="Correo electrónico" name="correo" 
+       [(ngModel)]="usuario.correo" required
+       #correo="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+ 
+  <div *ngIf="correo.errors?.required">
+    el correo requiredo
+  </div>
+  <div *ngIf="correo.errors?.pattern">
+   el correo no es correcto
+  </div>
+
+</div>
+</div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
